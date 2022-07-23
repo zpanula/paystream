@@ -25,7 +25,11 @@ function App() {
   return (
     <>
       <Navbar />
-      {loading ? <Loader active /> : <ArtistTable artists={data} />}
+      {loading ? (
+        <Loader active />
+      ) : (
+        <ArtistTable apiUrl={apiUrl} artists={data} />
+      )}
     </>
   );
 }
