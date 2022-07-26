@@ -103,9 +103,7 @@ function ArtistTable({ artists, apiUrl }) {
               <Table.Cell width={6}>{artist.name}</Table.Cell>
               <Table.Cell>{artist.rate}</Table.Cell>
               <Table.Cell>{artist.streams}</Table.Cell>
-              <Table.Cell>
-                {(artist.rate * artist.streams).toFixed(2)}
-              </Table.Cell>
+              <Table.Cell>{artist.payout.toFixed(2)}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
