@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { Table, Container, Checkbox } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import PropTypes from 'prop-types';
@@ -18,8 +18,8 @@ function tableSortReducer(state, action) {
 
       return {
         column: action.column,
-        data: _.sortBy(state.data, [action.column]),
-        direction: 'ascending',
+        data: _.sortBy(state.data, [action.column]).reverse(),
+        direction: 'descending',
       };
     default:
       throw new Error();
@@ -32,6 +32,10 @@ function ArtistTable({ artists, apiUrl }) {
     data: artists,
     direction: null,
   });
+
+  useEffect(() => {
+    dispatch({ type: 'CHANGE_SORT', column: 'payout' });
+  }, []);
 
   const { column, data, direction } = state;
 
